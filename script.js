@@ -21,7 +21,7 @@ myImage.addEventListener('load', function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     
     let particlesArray = []
-    const numberOfParticles = 7000
+    const numberOfParticles = 3000
     
     let mappedImage = []
     for(let y=0; y < canvas.height; y++) {
@@ -54,7 +54,7 @@ myImage.addEventListener('load', function() {
             this.y = Math.random() * canvas.height
             this.speed = 0
             this.velocity = Math.random() * 0.5
-            this.size = Math.random() * 2.5 + 0.2
+            this.size = Math.random() * 1.5 + 0.2
             this.position1 = Math.floor(this.y)
             this.position2 = Math.floor(this.x)
             this.angle = 0
@@ -70,8 +70,11 @@ myImage.addEventListener('load', function() {
             let movement = (2.5 - this.speed) + this.velocity
             this.angle += this.speed / 20
 
-            this.y += movement + Math.sin(this.angle) * 2
-            this.x += movement + Math.cos(this.angle) * 1
+            // this.y += movement + Math.sin(this.angle) * 2
+            // this.x += movement + Math.cos(this.angle) * 1
+
+            this.x += movement
+            this.y += movement
 
             if (this.y >= canvas.height){
                 this.y = 0
@@ -89,7 +92,7 @@ myImage.addEventListener('load', function() {
                  ctx.strokeStyle = mappedImage[this.position1][this.position2][1]
             }
             // ctx.fillStyle = gradient1
-            // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
             ctx.strokeRect(this.x, this.y, this.size * 3, this.size *3)
             ctx.fill()
         }
